@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="submit"]{
+            background-color: lightblue;
+            height:50px;
+            width: 100px;
+            border-radius: 10px;
+            border-width: 0px;
+            border-color: transparent;
+        }
+        input[type="submit"]:hover{
+            background-color: black;
+            height:50px;
+            width: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+            border-color: transparent;
+            border-width:0px ;
+            color: white;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <form action="/uploader" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file"/>
+        <input type="submit" value="Upload and Post"/>
+    </form>
+</body>
+</html>
