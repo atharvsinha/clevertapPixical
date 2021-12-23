@@ -45,11 +45,11 @@ def JSONify (data):
 
     usr = f'''{user}'''
     response1 = requests.post(
-        'https://api.clevertap.com/1/upload?dryRun=1', headers=headers, data=usr)
+        'https://api.clevertap.com/1/upload', headers=headers, data=usr)
 
     evt = f'''{events}'''
     response2 = requests.post(
-        'https://api.clevertap.com/1/upload?dryRun=1', headers=headers, data=evt)
+        'https://api.clevertap.com/1/upload', headers=headers, data=evt)
 
     
     return response1.json(), usr, response2.json(), evt
