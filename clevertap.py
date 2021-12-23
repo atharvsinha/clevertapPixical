@@ -12,7 +12,7 @@ def JSONify (data):
     temp1 = {}
     for i in range(len(data)):
         temp = {}
-        temp['identity'] = data.iloc[i]['identity']
+        temp['identity'] = data.iloc[i][data.columns[0]]
         temp['ts'] = int(round(time.time(), 0))
         temp['type'] = 'event'
         temp['evtName'] = data.iloc[i]['evtName']
@@ -22,7 +22,7 @@ def JSONify (data):
         temp['evtData'] = temp1
         events.append(temp)
         temp = {}
-        temp['identity'] = data.iloc[i]['identity']
+        temp['identity'] = data.iloc[i][data.columns[0]]
         temp['ts'] = int(round(time.time(), 0))
         temp['type'] = data.iloc[i]['type.1']
         temp1 = {}
@@ -38,21 +38,21 @@ def JSONify (data):
     user = {'d': user}
 
     headers = {
-        'X-CleverTap-Account-Id': 'TEST-464-68R-WR6Z',
-        'X-CleverTap-Passcode': 'AMA-SQC-YWUL',
+        'X-CleverTap-Account-Id': '86K-4KR-WR6Z',
+        'X-CleverTap-Passcode': 'SMM-AWC-YWUL',
         'Content-Type': 'application/json; charset=utf-8',
     }
 
     usr = f'''{user}'''
     response1 = requests.post(
-        'https://api.clevertap.com/1/upload', headers=headers, data=usr)
+        'https://api.clevertap.com/1/upload?dryRun=1', headers=headers, data=usr)
 
     evt = f'''{events}'''
     response2 = requests.post(
-        'https://api.clevertap.com/1/upload', headers=headers, data=evt)
+        'https://api.clevertap.com/1/upload?dryRun=1', headers=headers, data=evt)
 
     
-    return response1.json(), response2.json(), usr, evt
+    return response1.json(), usr, response2.json(), evt
     
 
 
@@ -69,7 +69,7 @@ def upload_file():
     if request.method == 'POST':
         f = request.files['file']
         data = pd.read_csv(f)
-    data.columns = ["identity",	'ts',	'type',	'evtName',	'evtData',	'category',	'age group',	'course title',	'lesson number','lesson name',	'preferred date',	'parent name',	'email', 	'course url',	'platform',	'transaction date',	'channel',	'zoom link',	'learning material',	'feedback jotform',	'type.1',	'profileData',	'customer type',	'parent name.1',	'child name','child birthdate']
+    # data.columns = ["identity",	'ts',	'type',	'evtName',	'evtData',	'category',	'age group',	'course title',	'lesson number','lesson name',	'preferred date',	'parent name',	'email', 	'course url',	'platform',	'transaction date',	'channel',	'zoom link',	'learning material',	'feedback jotform',	'type.1',	'profileData',	'customer type',	'parent name.1',	'child name','child birthdate']
 
     return f'''{JSONify(data)}'''
 
