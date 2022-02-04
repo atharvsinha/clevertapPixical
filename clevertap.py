@@ -68,12 +68,11 @@ def upload_files():
 
 @app.route('/uploader', methods=['POST'])
 def upload_file():
-    if request.method == 'POST':
+    # if request.method == 'POST':
         f = request.files['file']
         data = pd.read_csv(f)
-    # data.columns = ["identity",	'ts',	'type',	'evtName',	'evtData',	'category',	'age group',	'course title',	'lesson number','lesson name',	'preferred date',	'parent name',	'email', 	'course url',	'platform',	'transaction date',	'channel',	'zoom link',	'learning material',	'feedback jotform',	'type.1',	'profileData',	'customer type',	'parent name.1',	'child name','child birthdate']
-
-    return f'''{JSONify(data)}'''
+        return f'''{JSONify(data)}'''
+        
 
 
 if __name__ == '__main__':
